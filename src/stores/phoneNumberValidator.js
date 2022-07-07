@@ -9,7 +9,7 @@ export const usePhoneNumberValidatorStore = defineStore({
   id: "phoneNumberValidator",
 
   state: () => ({
-    validPhoneNumbers: _.map(FORMAT_OPTIONS, "value"),
+    formats: _.map(FORMAT_OPTIONS, "value"),
     extension: _.first(EXTENSION_OPTIONS).value,
   }),
 });
