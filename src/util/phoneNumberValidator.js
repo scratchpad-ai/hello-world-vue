@@ -12,7 +12,7 @@ import { FORMAT_OPTIONS } from "@/const/phoneNumberValidator.js";
  */
 export default function validatePhoneNumber(input, formats, extension) {
   // default formats
-  formats = formats || FORMAT_OPTIONS;
+  formats = formats || _.map(FORMAT_OPTIONS, "value");
 
   // append formats with extension
   if (extension) {
@@ -23,7 +23,7 @@ export default function validatePhoneNumber(input, formats, extension) {
   }
 
   // create a map keyed by template
-  const templateMap = _.keyBy(formats, convertToTemplate);
+  const templateMap = _.keyBy(formats);
 
   // convert input to template format
   const inputTemplate = convertToTemplate(input);
@@ -34,5 +34,17 @@ export default function validatePhoneNumber(input, formats, extension) {
 
 function convertToTemplate(format) {
   format = format || "";
-  return format.replace(/\d/g, "D");
+
+  // US template special case
+  if (
+    format.substring(0, 2) === "+1" &&
+    _.filter(format, (char) => char.match(/\d/g)).length === 11
+  ) {
+    return `+1${transformInputToTemplate(format.substring(2))}`;
+  }
+  return transformInputToTemplate(format);
+}
+
+function transformInputToTemplate(format) {
+  return format.replace(/\d/g, "#");
 }
