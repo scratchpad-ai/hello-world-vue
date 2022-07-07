@@ -21,7 +21,7 @@ export default {
 <template>
   <a
     class="dropdown-item"
-    :class="{ disabled: disabled }"
+    :class="{ disabled }"
     v-bind="$attrs"
     @click="onClick"
   >
