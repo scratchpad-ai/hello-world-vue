@@ -31,6 +31,8 @@ export default {
 
 <style scoped>
 .dropdown-item {
+  padding: 0 0.5rem;
+  text-align: left;
   cursor: pointer;
   display: block;
   white-space: nowrap;
