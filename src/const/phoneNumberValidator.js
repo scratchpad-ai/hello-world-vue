@@ -36,10 +36,10 @@ export const EXTENSION_OPTIONS = Object.freeze([
   },
   {
     label: "x12",
-    value: "x12",
+    value: "x##",
   },
   {
     label: "x123",
-    value: "x123",
+    value: "x###",
   },
 ]);
